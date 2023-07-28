@@ -1,4 +1,6 @@
 # silero-rvc-tts-ru
+# Данное решение является POC - Proof of Concept
+
 Комбинация технологии silero-tts и rvc для создания любого голоса для tts
 
 Запускаете install.bat, ждете установки
