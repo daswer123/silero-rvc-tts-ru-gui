@@ -1,9 +1,9 @@
-'''
-v1
-runtime\python.exe myinfer-v2-0528.py 0 "E:\codes\py39\RVC-beta\todo-songs\1111.wav" "E:\codes\py39\logs\mi-test\added_IVF677_Flat_nprobe_7.index" harvest "test.wav" "E:\codes\py39\test-20230416b\weights\mi-test.pth" 0.66 cuda:0 True 3 0 1 0.33
-v2
-runtime\python.exe myinfer-v2-0528.py 0 "E:\codes\py39\RVC-beta\todo-songs\1111.wav" "E:\codes\py39\test-20230416b\logs\mi-test-v2\aadded_IVF677_Flat_nprobe_1_v2.index" harvest "test_v2.wav" "E:\codes\py39\test-20230416b\weights\mi-test-v2.pth" 0.66 cuda:0 True 3 0 1 0.33
-'''
+# '''
+# v1
+# runtime\python.exe myinfer-v2-0528.py 0 "E:\codes\py39\RVC-beta\todo-songs\1111.wav" "E:\codes\py39\logs\mi-test\added_IVF677_Flat_nprobe_7.index" harvest "test.wav" "E:\codes\py39\test-20230416b\weights\mi-test.pth" 0.66 cuda:0 True 3 0 1 0.33
+# v2
+# runtime\python.exe myinfer-v2-0528.py 0 "E:\codes\py39\RVC-beta\todo-songs\1111.wav" "E:\codes\py39\test-20230416b\logs\mi-test-v2\aadded_IVF677_Flat_nprobe_1_v2.index" harvest "test_v2.wav" "E:\codes\py39\test-20230416b\weights\mi-test-v2.pth" 0.66 cuda:0 True 3 0 1 0.33
+# '''
 
 import os,sys,pdb,torch
 now_dir = os.getcwd()
@@ -150,7 +150,7 @@ def vc_single(sid,input_audio,f0_up_key,f0_file,f0_method,file_index,index_rate)
 def get_vc(model_path):
     global n_spk,tgt_sr,net_g,vc,cpt,device,is_half,version
     print("loading pth %s"%model_path)
-    cpt = torch.load(model_path, map_location="cpu")
+    cpt = torch.load(model_path, map_location=device)
     tgt_sr = cpt["config"][-1]
     cpt["config"][-3]=cpt["weight"]["emb_g.weight"].shape[0]#n_spk
     if_f0=cpt.get("f0",1)
@@ -178,4 +178,4 @@ def get_vc(model_path):
 get_vc(model_path)
 wav_opt=vc_single(0,input_path,f0up_key,None,f0method,index_path,index_rate)
 wavfile.write(opt_path, tgt_sr, wav_opt)
-
+print("All done")
