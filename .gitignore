@@ -1,0 +1,7 @@
+settings.json
+temp
+out
+
+/libs/silero_api_server/model.pt
+/libs/silero_api_server/samples/
+/libs/silero_api_server/sessions/
