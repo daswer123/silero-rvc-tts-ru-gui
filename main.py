@@ -114,7 +114,7 @@ class MainWindow(QWidget):
         self.settings_layout.addWidget(QLabel('method'))
         self.settings_layout.addWidget(self.method_group)
 
-        self.voice_model_group, self.voice_model_buttons = self.create_radio_group(['aidar', 'eugene', 'ksenia', 'xenia', 'baya'])
+        self.voice_model_group, self.voice_model_buttons = self.create_radio_group(['aidar', 'eugene', 'kseniya', 'xenia', 'baya'])
         self.voice_model_buttons['aidar'].setChecked(True)
         self.settings_layout.addWidget(QLabel('Выберите голос модели:'))
         self.settings_layout.addWidget(self.voice_model_group)
@@ -183,7 +183,7 @@ class MainWindow(QWidget):
         self.load_settings()
 
     def on_worker_finished(self, params_string):
-        QMessageBox.information(self, "Успех", f"Аудиофайл успешно сохранен в {self.audio_path}.")
+        QMessageBox.information(self, "Успех", f"Аудиофайл успешно преобразован.")
 
     def on_queue_updated(self, queue_size):
         self.setWindowTitle(f"Запросов в очереди: {queue_size}")
@@ -334,10 +334,10 @@ class MainWindow(QWidget):
 
                 # Создаем строку с параметрами
                 pith = str(self.pith_slider.value())
-                model_index = self.model_index_path if self.model_index_path else "''"
+                model_index = str(self.model_index_path) if self.model_index_path else "''"
                 method = self.get_selected_button(self.method_buttons)  # Теперь возвращает текст
                 outpath = self.outpath_path
-                model_path = self.model_path
+                model_path = str(self.model_path)
                 index_ratio = str(self.index_ratio_slider.value() / 100)
                 device = "cuda:0"  # Теперь возвращает текст
                 protect_voice = str(self.protect_voice_slider.value() / 100)
